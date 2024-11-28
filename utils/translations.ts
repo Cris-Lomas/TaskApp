@@ -15,6 +15,7 @@ export type LanguageStrings = {
     delete: string,
     noTasks: string,
     settings : string
+    noCategory : string
 }
 
 const translations : Translations = {
@@ -29,7 +30,8 @@ const translations : Translations = {
       uncomplete: "Uncomplete",
       delete: "Delete",
       noTasks: "No tasks available",
-      settings: "Settings"
+      settings: "Settings",
+      noCategory: "No category"
     },
     es: {
       tasks: "Tareas",
@@ -42,7 +44,8 @@ const translations : Translations = {
       uncomplete: "Desmarcar",
       delete: "Eliminar",
       noTasks: "No hay tareas disponibles",
-      settings: "Opciones"
+      settings: "Opciones",
+      noCategory: "Sin categoría"
     },
   }
   
