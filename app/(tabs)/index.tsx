@@ -1,13 +1,13 @@
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import TaskCategoryComponent from '@/components/TaskCategoryComponent';
+import CategoryComponent from '@/components/CategoryComponent';
 import TaskComponent from '@/components/TaskComponent';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { NO_CATEGORY_NAME } from '@/constants/Names';
 import { useI18n } from '@/context/i18nContext';
 import { Task } from '@/domain/Task';
-import { TaskCategory } from '@/domain/TaskCategory';
-import { TaskCategoryFactory } from '@/factories/TaskCategoryFactory';
+import { Category } from '@/domain/Category';
+import { CategoryFactory } from '@/factories/CategoryFactory';
 import { useOnInit } from '@/hooks/useOnInit';
 import { mockedTaskService } from '@/services/MockedTaskService';
 import { useRouter } from 'expo-router';
@@ -17,10 +17,10 @@ export default function TasksScreen() {
 
   const { t } = useI18n()
   const [tasks, setTasks] = useState<Task[]>([])
-  const [categories, setCategories] = useState<TaskCategory[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
   const [hasCategories, setHasCategories] = useState<boolean>(false)
   const [hasToCreateEmptyCategory, setHasToCreateEmptyCategory] = useState<boolean>(false)
-  const emptyTaskCategory = TaskCategoryFactory.EmptyTaskCategory().rename(t(NO_CATEGORY_NAME))
+  const emptyTaskCategory = CategoryFactory.CreateNoCategory().rename(t(NO_CATEGORY_NAME))
   
 
   useOnInit(()=>{
@@ -42,11 +42,11 @@ export default function TasksScreen() {
       </ThemedView>
       {
         hasToCreateEmptyCategory &&
-        <TaskCategoryComponent key={0} category={emptyTaskCategory} />
+        <CategoryComponent key={0} category={emptyTaskCategory} />
       }
       {hasCategories 
       ? categories.map((category) => (
-        <TaskCategoryComponent key={category.id} category={category} />
+        <CategoryComponent key={category.id} category={category} />
       ))
       : tasks.map((task) => (
         <TaskComponent key={task.id} task={task} />

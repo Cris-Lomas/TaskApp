@@ -2,19 +2,19 @@ import { StyleSheet } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import { HEADER_HEIGHT, MIN_PADDING } from '@/constants/Sizes';
 import { ThemedText } from './ThemedText';
-import { TaskCategory } from '@/domain/TaskCategory';
+import { Category } from '@/domain/Category';
 import { useRouter } from 'expo-router';
 
 type Props = {
-  category : TaskCategory
+  category : Category
 };
 
-export default function TaskCategoryComponent({ category }: Props) {
+export default function CategoryComponent({ category }: Props) {
   const router = useRouter();
 
   const goToCategory = () => {
     // Ruta dinámica con parámetros
-    router.push(`/tasksInCategory?categoryId=${category.id}`);
+    router.navigate(`/tasksInCategory?categoryId=${category.id}`)
   }
 
   return (

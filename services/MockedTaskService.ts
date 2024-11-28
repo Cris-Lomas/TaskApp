@@ -1,5 +1,5 @@
 import { Task } from "@/domain/Task";
-import { TaskCategory } from "@/domain/TaskCategory";
+import { Category } from "@/domain/Category";
 
 
 class MockedTaskService{
@@ -38,17 +38,17 @@ class MockedTaskService{
         return this.getTasks().find(task => task.id == id)
     }
 
-    getCategories = () : TaskCategory[] =>{
-        const category1 : TaskCategory = new TaskCategory(1, "Compras")
-        const category2 : TaskCategory = new TaskCategory(2, "Pendientes para hacer")
+    getCategories = () : Category[] =>{
+        const category1 : Category = new Category(1, "Compras")
+        const category2 : Category = new Category(2, "Pendientes para hacer")
         return [category1, category2]
     }
 
-    createCategory = (taskCategory : TaskCategory) : void => {
+    createCategory = (taskCategory : Category) : void => {
         
     }
 
-    getCategory = (id: number) : TaskCategory | undefined => {
+    getCategory = (id: number) : Category | undefined => {
         return this.getCategories().find(category => category.id == id)
     }
 
