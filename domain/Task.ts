@@ -1,5 +1,3 @@
-import { taskService } from "@/services/TaskService";
-
 export class Task {
 
     constructor(
