@@ -6,29 +6,37 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class TaskService {
 
-    //Si hay tareas sin categoría asignada y existe al menos una categoría, se asignan a una categoría "No category | Sin categoría"
-    hasTasksWithoutCategories = false
-
-    //Si no hay categorías, muestro el listado de tareas completo
-    hasCategories = false
-
     getTasks = async () : Promise<Task[]> =>{
         const keys = await AsyncStorage.getAllKeys()
         const tasksKVP = await AsyncStorage.multiGet(keys.filter(key=>key.startsWith(START_TASK_KEY)))
         const tasks : Task[] = []
         if(tasksKVP != null)
             tasksKVP.forEach(task=> tasks.push(JSON.parse(task.at(1)!!)))
-        this.hasTasksWithoutCategories = tasks.some(task => task.id == 0)
         return tasks
     }
 
+    getTasksByCategoryId = (categoryId : number) : Task[] => {
+        return []
+    }
+
     getLastId = async() : Promise<number> => {
-        const lastId = await AsyncStorage.getItem(LAST_ID_KEY)
-        return lastId ? +lastId : 1
+        const tasks = await this.getTasks()
+        const maxId = tasks.reduce((max, task) => Math.max(max, task.id), 0)
+        return maxId
+    }
+
+    getLastCategoryId = async() : Promise<number> => {
+        const categories = await this.getCategories()
+        const maxId = categories.reduce((max, category) => Math.max(max, category.id), 0)
+        return maxId
     }
 
     createTask = async(task : Task) : Promise<void> => {
         await AsyncStorage.setItem(START_TASK_KEY + task.id, JSON.stringify(task))
+    }
+
+    updateTask = async(task : Task) : Promise<void> => {
+        await AsyncStorage.mergeItem(START_TASK_KEY + task.id, JSON.stringify(task))
     }
 
     getTask = async(id: number) : Promise<Task> => {
@@ -40,8 +48,8 @@ class TaskService {
         const keys = await AsyncStorage.getAllKeys()
         const categoriesKVP = await AsyncStorage.multiGet(keys.filter(key=>key.startsWith(START_TASK_CATEGORY_KEY)))
         const categories : TaskCategory[] = []
-        this.hasCategories = categoriesKVP != null
-        if(this.hasCategories)
+        const hasCategories = categoriesKVP != null
+        if(hasCategories)
             categoriesKVP.forEach(category=> categories.push(JSON.parse(category.at(1)!!)))
         return categories
     }
