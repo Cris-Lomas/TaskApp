@@ -19,7 +19,7 @@ export default function TaskCategoryComponent({ category }: Props) {
 
   return (
     <>
-    <ThemedView style={styles.header} onTouchEnd={goToCategory}>
+    <ThemedView style={styles.header} onPointerDown={goToCategory}>
       <ThemedText type="title">
         {category.name}
       </ThemedText>
