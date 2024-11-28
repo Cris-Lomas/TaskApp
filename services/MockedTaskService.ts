@@ -19,7 +19,7 @@ class MockedTaskService{
     }
 
     getTasksByCategoryId = (categoryId : number) : Task[] => {
-        return []
+        return this.getTasks().filter(task=> task.categoryId == categoryId)
     }
 
     getLastId = () : number => {
@@ -40,7 +40,7 @@ class MockedTaskService{
 
     getCategories = () : TaskCategory[] =>{
         const category1 : TaskCategory = new TaskCategory(1, "Compras")
-        const category2 : TaskCategory = new TaskCategory(1, "Pendientes para hacer")
+        const category2 : TaskCategory = new TaskCategory(2, "Pendientes para hacer")
         return [category1, category2]
     }
 
