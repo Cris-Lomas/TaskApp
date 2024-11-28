@@ -33,7 +33,8 @@ export default function RootLayout() {
       <I18nProvider>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
+          <Stack.Screen name="+not-found"/>
+          <Stack.Screen name="tasksInCategory"/>
         </Stack>
         <StatusBar style="auto" />
       </I18nProvider>
