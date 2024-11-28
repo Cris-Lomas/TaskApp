@@ -1,43 +1,33 @@
-import { ITask } from "@/interfaces/ITask";
 import { taskService } from "@/services/TaskService";
 
-export class Task implements ITask{
-    id!: number;
-    name: string;
-    categoryId: number;
-    isCompleted: boolean;
-    isDeleted: boolean;
+export class Task {
 
     constructor(
-        name : string,
-        categoryId: number = 0
+        readonly id : number,
+        readonly name : string,
+        readonly categoryId: number = 0,
+        readonly isCompleted : boolean = false,
+        readonly isDeleted : boolean = false
     ) {
+        this.id = id
         this.name = name
         this.categoryId = categoryId
-        this.isCompleted = false
-        this.isDeleted = false
-        this.create()
+        this.isCompleted = isCompleted
+        this.isDeleted = isDeleted
     }
 
-    private create = async () : Promise<void> =>{
-        try{
-            this.id = await taskService.getLastId()
-            await taskService.createTask(this)
-        } catch(error){
-            console.log(error)
-        }
-    }
+    toggleComplete = () : Task => new Task(this.id, this.name, this.categoryId, !this.isCompleted, this.isDeleted)
 
-    toggleComplete = () : void => {
-        this.isCompleted = !this.isCompleted
-    }
+    delete = () : Task => new Task(this.id, this.name, this.categoryId, this.isCompleted, true)
 
-    delete = () : void => {
-        this.isDeleted = true
-    } 
+    restore = () : Task => new Task(this.id, this.name, this.categoryId, this.isCompleted, false)
 
-    restore = () : void => {
-        this.isDeleted = false
-    } 
+    hasCategory = () : boolean => this.categoryId !== 0
+
+    deleteCategory = () : Task => new Task(this.id, this.name, 0, this.isCompleted, this.isDeleted)
+
+    moveToCategory = (categoryId : number) : Task => new Task(this.id, this.name, categoryId, this.isCompleted, this.isDeleted)
+
+    rename = (newName: string): Task => new Task(this.id, newName, this.categoryId, this.isCompleted, this.isDeleted)
     
 }
