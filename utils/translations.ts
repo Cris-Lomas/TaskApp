@@ -1,21 +1,23 @@
 export type Translations = {
-    en : LanguageStrings,
+    en : LanguageStrings
     es : LanguageStrings
 }
 
 export type LanguageStrings = {
-    tasks: string,
-    addTask: string,
-    menu: string,
-    categories: string,
-    addCategory: string,
-    newTaskPlaceholder: string,
-    complete: string,
-    uncomplete: string,
-    delete: string,
-    noTasks: string,
+    tasks: string
+    addTask: string
+    menu: string
+    categories: string
+    addCategory: string
+    newTaskPlaceholder: string
+    complete: string
+    uncomplete: string
+    delete: string
+    noTasks: string
     settings : string
     noCategory : string
+    themeSetting : string
+    languageSetting : string
 }
 
 const translations : Translations = {
@@ -31,7 +33,9 @@ const translations : Translations = {
       delete: "Delete",
       noTasks: "No tasks available",
       settings: "Settings",
-      noCategory: "No category"
+      noCategory: "No category",
+      themeSetting : "Theme",
+      languageSetting : "Language"
     },
     es: {
       tasks: "Tareas",
@@ -45,7 +49,9 @@ const translations : Translations = {
       delete: "Eliminar",
       noTasks: "No hay tareas disponibles",
       settings: "Opciones",
-      noCategory: "Sin categoría"
+      noCategory: "Sin categoría",
+      themeSetting : "Tema",
+      languageSetting : "Lenguaje"
     },
   }
   
