@@ -4,18 +4,16 @@
  */
 
 import { Colors } from '@/constants/Colors';
+import { useCustomTheme } from '@/context/themeContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { DarkTheme } from '@react-navigation/native';
 
 export function useThemeColor(
-  props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
-  const theme = useColorScheme() ?? 'light';
-  const colorFromProps = props[theme];
+) 
+{
+  const { theme } = useCustomTheme()
+  const themeName = theme == DarkTheme ? 'dark' : 'light'
 
-  if (colorFromProps) {
-    return colorFromProps;
-  } else {
-    return Colors[theme][colorName];
-  }
+  return Colors[themeName][colorName];
 }
