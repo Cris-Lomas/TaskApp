@@ -1,4 +1,4 @@
-import { LAST_ID_KEY, START_TASK_CATEGORY_KEY, START_TASK_KEY } from "@/constants/Names";
+import { LAST_ID_KEY, START_CATEGORY_KEY, START_TASK_KEY } from "@/constants/Names";
 import { Task } from "@/domain/Task";
 import { Category } from "@/domain/Category";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -46,7 +46,7 @@ class TaskService {
 
     getCategories = async () : Promise<Category[]> =>{
         const keys = await AsyncStorage.getAllKeys()
-        const categoriesKVP = await AsyncStorage.multiGet(keys.filter(key=>key.startsWith(START_TASK_CATEGORY_KEY)))
+        const categoriesKVP = await AsyncStorage.multiGet(keys.filter(key=>key.startsWith(START_CATEGORY_KEY)))
         const categories : Category[] = []
         const hasCategories = categoriesKVP != null
         if(hasCategories)
@@ -55,11 +55,11 @@ class TaskService {
     }
 
     createCategory = async(taskCategory : Category) : Promise<void> => {
-        await AsyncStorage.setItem(START_TASK_CATEGORY_KEY + taskCategory.id, JSON.stringify(taskCategory))
+        await AsyncStorage.setItem(START_CATEGORY_KEY + taskCategory.id, JSON.stringify(taskCategory))
     }
 
     getCategory = async(id: number) : Promise<Category> => {
-        const category = await AsyncStorage.getItem(START_TASK_CATEGORY_KEY + id)
+        const category = await AsyncStorage.getItem(START_CATEGORY_KEY + id)
         return category != null ? JSON.parse(category) : null
     }
 
