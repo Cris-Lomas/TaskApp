@@ -9,7 +9,7 @@ type Props = {
   category : Category
 }
 
-export default function CategoryComponent({ category }: Props) {
+export default function CategoryViewComponent({ category }: Props) {
   const router = useRouter()
 
   const goToCategory = () => {

@@ -1,5 +1,5 @@
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import CategoryComponent from '@/components/CategoryComponent'
+import CategoryViewComponent from '@/components/CategoryViewComponent'
 import TaskComponent from '@/components/TaskComponent'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
@@ -41,11 +41,11 @@ export default function TasksScreen() {
       </ThemedView>
       {
         hasToCreateEmptyCategory &&
-        <CategoryComponent key={0} category={emptyTaskCategory} />
+        <CategoryViewComponent key={0} category={emptyTaskCategory} />
       }
       {hasCategories 
       ? categories.map((category) => (
-        <CategoryComponent key={category.id} category={category} />
+        <CategoryViewComponent key={category.id} category={category} />
       ))
       : tasks.map((task) => (
         <TaskComponent key={task.id} task={task} />

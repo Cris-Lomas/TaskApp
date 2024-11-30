@@ -18,7 +18,7 @@ export default function ParallaxScrollView({ children, title }: Props) {
   return (
     <>
     <ThemedView style={styles.header}>
-      <ThemedText type="title">
+      <ThemedText style={styles.header} type="title">
         {title}
       </ThemedText>
     </ThemedView>
@@ -40,10 +40,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    height: HEADER_HEIGHT * 2,
+    height: HEADER_HEIGHT * 4,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: MIN_PADDING
   },
   content: {
     flex: 1,
