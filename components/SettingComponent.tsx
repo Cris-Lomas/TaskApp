@@ -5,41 +5,23 @@ import { Setting } from '@/domain/Setting'
 import { ThemedView } from './ThemedView'
 import { useI18n } from '@/context/i18nContext'
 import { DropdownSetting } from './DropdownSetting'
-import { I18nString } from '@/utils/translations'
+import Icon from 'react-native-vector-icons/Ionicons' // Puedes cambiar la familia de íconos si prefieres otra
 
 type Props = {
   setting : Setting
-  defaultOption : I18nString
 }
 
-export default function SettingComponent({ setting, defaultOption }: Props) {
+export default function SettingComponent({ setting }: Props) {
 
   const { t } = useI18n()
 
   return (
     <ThemedView>
+      <Icon name={setting.icon}></Icon>
       <ThemedText type="title">
         {t(setting.name)}:
-        <DropdownSetting defaultSelection={defaultOption} options={setting.options} onSelect={setting.action} />
+        <DropdownSetting defaultSelection={setting.defaultOption} options={setting.options} onSelect={setting.action} />
       </ThemedText>
     </ThemedView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    height: HEADER_HEIGHT * 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: MIN_PADDING
-  },
-  content: {
-    flex: 1,
-    padding: 32,
-    gap: 16,
-    overflow: 'hidden',
-  },
-})
