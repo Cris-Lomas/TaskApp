@@ -1,17 +1,16 @@
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import CategoryComponent from '@/components/CategoryComponent';
-import TaskComponent from '@/components/TaskComponent';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { NO_CATEGORY_NAME } from '@/constants/Names';
-import { useI18n } from '@/context/i18nContext';
-import { Task } from '@/domain/Task';
-import { Category } from '@/domain/Category';
-import { CategoryFactory } from '@/factories/CategoryFactory';
-import { useOnInit } from '@/hooks/useOnInit';
-import { mockedTaskService } from '@/services/MockedTaskService';
-import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import ParallaxScrollView from '@/components/ParallaxScrollView'
+import CategoryComponent from '@/components/CategoryComponent'
+import TaskComponent from '@/components/TaskComponent'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { NO_CATEGORY_NAME } from '@/constants/Names'
+import { useI18n } from '@/context/i18nContext'
+import { Task } from '@/domain/Task'
+import { Category } from '@/domain/Category'
+import { CategoryFactory } from '@/factories/CategoryFactory'
+import { useOnInit } from '@/hooks/useOnInit'
+import { mockedTaskService } from '@/services/MockedTaskService'
+import { useState } from 'react'
 
 export default function TasksScreen() {
 

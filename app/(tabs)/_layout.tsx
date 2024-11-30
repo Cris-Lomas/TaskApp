@@ -1,12 +1,10 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useI18n } from '@/context/i18nContext';
-import { useRoute } from '@react-navigation/native';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { Tabs } from 'expo-router'
+import React from 'react'
+import { Platform } from 'react-native'
+import { IconSymbol } from '@/components/ui/IconSymbol'
+import TabBarBackground from '@/components/ui/TabBarBackground'
+import { useI18n } from '@/context/i18nContext'
+import { useThemeColor } from '@/hooks/useThemeColor'
 
 export default function TabLayout() {
   const tintColor = useThemeColor('tint');

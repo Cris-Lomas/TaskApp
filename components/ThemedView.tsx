@@ -1,16 +1,13 @@
-import { View, type ViewProps } from 'react-native';
-import { StyleSheet } from 'react-native';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { View, type ViewProps } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useThemeColor } from '@/hooks/useThemeColor'
 
-export type ThemedViewProps = ViewProps & {
-  lightColor?: string;
-  darkColor?: string;
-};
 
-export function ThemedView({ style, lightColor, darkColor, ...otherProps }: ThemedViewProps) {
+export function ThemedView({ style, ...otherProps }: ViewProps) {
+  
   const backgroundColor = useThemeColor('background')
 
-  return <View style={[{ backgroundColor }, style, styles.content]} {...otherProps} />;
+  return <View style={[{ backgroundColor }, style, styles.content]} {...otherProps} />
 }
 
 const styles = StyleSheet.create({
@@ -18,4 +15,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-});
+})

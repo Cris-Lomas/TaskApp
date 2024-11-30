@@ -1,16 +1,16 @@
-import { StyleSheet } from 'react-native';
-import { ThemedView } from '@/components/ThemedView';
-import { HEADER_HEIGHT, MIN_PADDING } from '@/constants/Sizes';
-import { ThemedText } from './ThemedText';
-import { Category } from '@/domain/Category';
-import { useRouter } from 'expo-router';
+import { StyleSheet } from 'react-native'
+import { ThemedView } from '@/components/ThemedView'
+import { HEADER_HEIGHT, MIN_PADDING } from '@/constants/Sizes'
+import { ThemedText } from './ThemedText'
+import { Category } from '@/domain/Category'
+import { useRouter } from 'expo-router'
 
 type Props = {
   category : Category
-};
+}
 
 export default function CategoryComponent({ category }: Props) {
-  const router = useRouter();
+  const router = useRouter()
 
   const goToCategory = () => {
     // Ruta dinámica con parámetros
@@ -25,7 +25,7 @@ export default function CategoryComponent({ category }: Props) {
       </ThemedText>
     </ThemedView>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
     gap: 16,
     overflow: 'hidden',
   },
-});
+})

@@ -1,13 +1,13 @@
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import TaskComponent from '@/components/TaskComponent';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { useI18n } from '@/context/i18nContext';
-import { Task } from '@/domain/Task';
-import { useOnInit } from '@/hooks/useOnInit';
-import { mockedTaskService } from '@/services/MockedTaskService';
-import { useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import ParallaxScrollView from '@/components/ParallaxScrollView'
+import TaskComponent from '@/components/TaskComponent'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { useI18n } from '@/context/i18nContext'
+import { Task } from '@/domain/Task'
+import { useOnInit } from '@/hooks/useOnInit'
+import { mockedTaskService } from '@/services/MockedTaskService'
+import { useLocalSearchParams } from 'expo-router'
+import { useState } from 'react'
 
 export default function TasksInCategoryScreen() {
 

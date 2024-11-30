@@ -1,12 +1,12 @@
-import { StyleSheet } from 'react-native';
-import { ThemedView } from '@/components/ThemedView';
-import { HEADER_HEIGHT, MIN_PADDING } from '@/constants/Sizes';
-import { ThemedText } from './ThemedText';
-import { Task } from '@/domain/Task';
+import { StyleSheet } from 'react-native'
+import { ThemedView } from '@/components/ThemedView'
+import { HEADER_HEIGHT, MIN_PADDING } from '@/constants/Sizes'
+import { ThemedText } from './ThemedText'
+import { Task } from '@/domain/Task'
 
 type Props = {
   task : Task
-};
+}
 
 export default function TaskComponent({ task }: Props) {
 
@@ -18,7 +18,7 @@ export default function TaskComponent({ task }: Props) {
       </ThemedText>
     </ThemedView>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
     gap: 16,
     overflow: 'hidden',
   },
-});
+})
