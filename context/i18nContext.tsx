@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import translations , { Translations, LanguageStrings } from '../utils/translations'
+import translations , { Translations, I18nString } from '../utils/translations'
 import { useOnInit } from '@/hooks/useOnInit'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -8,7 +8,7 @@ type Language = keyof Translations
 type I18nContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: keyof LanguageStrings) => string
+  t: (key: keyof I18nString) => string
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
@@ -16,7 +16,7 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined)
 export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en')
 
-  const t = (key: keyof LanguageStrings): string => {
+  const t = (key: keyof I18nString): string => {
     return translations[language][key] || key
   }
 

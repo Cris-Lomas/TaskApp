@@ -1,22 +1,21 @@
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { HEADER_HEIGHT, MIN_PADDING } from '@/constants/Sizes'
 import { ThemedText } from './ThemedText'
+import { Setting } from '@/domain/Setting'
+import { ThemedView } from './ThemedView'
 
 type Props = {
-  name : string
-  action : () => void
+  setting : Setting
 }
 
-export default function SettingComponent({ name, action }: Props) {
+export default function SettingComponent({ setting }: Props) {
 
   return (
-    <>
-    <TouchableOpacity onPress={action} style={styles.container}>
+    <ThemedView>
       <ThemedText type="title">
-        {name}
+        {setting.name}
       </ThemedText>
-    </TouchableOpacity>
-    </>
+    </ThemedView>
   )
 }
 

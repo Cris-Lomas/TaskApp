@@ -1,9 +1,9 @@
 export type Translations = {
-    en : LanguageStrings
-    es : LanguageStrings
+    en : I18nString
+    es : I18nString
 }
 
-export type LanguageStrings = {
+export type I18nString = {
     tasks: string
     addTask: string
     menu: string
