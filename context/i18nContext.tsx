@@ -6,8 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 type Language = keyof Translations
 
 type I18nContextType = {
-  language: Language
-  setLanguage: (lang: Language) => void
+  language: I18nString
+  setLanguage: (selectedOption: I18nString) => void
   t: (key: I18nString) => string
 }
 
@@ -26,7 +26,7 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const loadLanguage = async () => {
       try{
         const savedLanguage = await AsyncStorage.getItem('language')
-        if (savedLanguage) setLanguage(savedLanguage as Language)
+        if (savedLanguage) setLanguage(savedLanguage as I18nString)
       } catch{
         console.log("It was an error getting language.")
       }
@@ -34,9 +34,9 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
     loadLanguage()
   })
 
-  const setLanguage = async (lenguage : Language) => {
+  const setLanguage = async (lenguage : I18nString) => {
     await AsyncStorage.setItem('language', lenguage)
-    setLanguageState(lenguage)
+    setLanguageState(lenguage as Language)
   }
 
   return (

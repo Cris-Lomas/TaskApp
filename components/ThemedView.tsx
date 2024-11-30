@@ -13,6 +13,6 @@ export function ThemedView({ style, ...otherProps }: ViewProps) {
 const styles = StyleSheet.create({
   content: {
     justifyContent: 'center',
-    alignItems: 'center'
+    width: '100%'
   },
 })

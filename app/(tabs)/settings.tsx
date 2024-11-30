@@ -8,21 +8,32 @@ import { I18nString } from '@/utils/translations'
 
 export default function SettingsScreen() {
 
-  const { t } = useI18n()
+  const { language, setLanguage, t } = useI18n()
   const { theme, setTheme } = useCustomTheme()
   const _settings : Setting[] = [
     {
-      name: 'theme',
+      label: 'theme',
       icon: theme == DarkTheme ? 'moon' : 'sunny',
       defaultOption: theme == DarkTheme ? 'dark' : 'light',
       options: ['dark', 'light'],
-      action: setTheme
+      onSelect: setTheme
+    },
+    {
+      label: 'language',
+      icon: 'flag',
+      defaultOption: language,
+      options: ['en', 'es'],
+      onSelect: setLanguage
     }
   ]
 
   return (
     <ParallaxScrollView title={t("settings")}>
-      <SettingComponent setting={_settings[0]} />
+      {_settings.map((setting, index) => (
+        <>
+          <SettingComponent key={index} setting={setting}/>
+        </>
+      ))}
     </ParallaxScrollView>
   );
 }

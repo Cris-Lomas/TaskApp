@@ -17,8 +17,8 @@ type I18nStrings = {
     language : string
     dark: string
     light: string
-    english: string
-    spanish: string
+    en: string
+    es: string
 }
 
 export type Translations = {
@@ -44,8 +44,8 @@ const translations : Translations = {
       language: "Language",
       dark: "Dark",
       light: "Light",
-      english: "English",
-      spanish: "Spanish"
+      en: "English",
+      es: "Spanish"
     },
     es: {
       tasks: "Tareas",
@@ -64,8 +64,8 @@ const translations : Translations = {
       language: "Lenguaje",
       dark: "Oscuro",
       light: "Claro",
-      english: "Inglés",
-      spanish: "Español"
+      en: "Inglés",
+      es: "Español"
     },
   }
   
