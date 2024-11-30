@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import { ThemedView } from './ThemedView'
+import { I18nString } from '@/utils/translations'
+import { useI18n } from '@/context/i18nContext'
 
 type DropdownProps = {
-  defaultSelection: string
-  options: string[] // Opciones del dropdown
-  onSelect: (selected: string) => void // Función a llamar con la opción seleccionada
+  defaultSelection: I18nString
+  options: I18nString[] // Opciones del dropdown
+  onSelect: (selected: I18nString) => void // Función a llamar con la opción seleccionada
 }
 
 export const DropdownSetting: React.FC<DropdownProps> = ({ defaultSelection, options, onSelect }) => {
 
-  const [selectedValue, setSelectedValue] = useState<string>(defaultSelection)
+  const [selectedValue, setSelectedValue] = useState<I18nString>(defaultSelection)
+  const { t } = useI18n()
 
-  const handleChange = (value: string) => {
+  const handleChange = (value: I18nString) => {
     setSelectedValue(value)
     onSelect(value)
   }
@@ -26,7 +29,7 @@ export const DropdownSetting: React.FC<DropdownProps> = ({ defaultSelection, opt
         style={styles.picker}
       >
         {options.map((option, index) => (
-          <Picker.Item key={index} label={option} value={option} />
+          <Picker.Item key={index} label={t(option)} value={option} />
         ))}
       </Picker>
     </ThemedView>

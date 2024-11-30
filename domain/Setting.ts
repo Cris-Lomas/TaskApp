@@ -4,6 +4,7 @@ import { I18nString } from "@/utils/translations"
 export interface Setting {
     icon?: string
     name: I18nString
-    settingCategoryId: number
-    onClick: () => void
+    defaultOption: I18nString
+    options: I18nString[]
+    action: (selectedOption : I18nString) => void
   }

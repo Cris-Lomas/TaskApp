@@ -8,23 +8,28 @@ type Language = keyof Translations
 type I18nContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: keyof I18nString) => string
+  t: (key: I18nString) => string
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
 
 export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  
   const [language, setLanguageState] = useState<Language>('en')
 
-  const t = (key: keyof I18nString): string => {
+  const t = (key: I18nString): string => {
     return translations[language][key] || key
   }
 
 
   useOnInit(()=>{
     const loadLanguage = async () => {
-      const savedLanguage = await AsyncStorage.getItem('language')
-      if (savedLanguage) setLanguage(savedLanguage as Language)
+      try{
+        const savedLanguage = await AsyncStorage.getItem('language')
+        if (savedLanguage) setLanguage(savedLanguage as Language)
+      } catch{
+        console.log("It was an error getting language.")
+      }
     }
     loadLanguage()
   })

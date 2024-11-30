@@ -1,9 +1,6 @@
-export type Translations = {
-    en : I18nString
-    es : I18nString
-}
+export type I18nString = keyof I18nStrings
 
-export type I18nString = {
+type I18nStrings = {
     tasks: string
     addTask: string
     menu: string
@@ -16,8 +13,17 @@ export type I18nString = {
     noTasks: string
     settings : string
     noCategory : string
-    themeSetting : string
-    languageSetting : string
+    theme : string
+    language : string
+    dark: string
+    light: string
+    english: string
+    spanish: string
+}
+
+export type Translations = {
+  en : I18nStrings
+  es : I18nStrings
 }
 
 const translations : Translations = {
@@ -34,8 +40,12 @@ const translations : Translations = {
       noTasks: "No tasks available",
       settings: "Settings",
       noCategory: "No category",
-      themeSetting : "Theme",
-      languageSetting : "Language"
+      theme: "Theme",
+      language: "Language",
+      dark: "Dark",
+      light: "Light",
+      english: "English",
+      spanish: "Spanish"
     },
     es: {
       tasks: "Tareas",
@@ -50,8 +60,12 @@ const translations : Translations = {
       noTasks: "No hay tareas disponibles",
       settings: "Opciones",
       noCategory: "Sin categoría",
-      themeSetting : "Tema",
-      languageSetting : "Lenguaje"
+      theme: "Tema",
+      language: "Lenguaje",
+      dark: "Oscuro",
+      light: "Claro",
+      english: "Inglés",
+      spanish: "Español"
     },
   }
   
