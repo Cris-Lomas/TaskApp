@@ -3,48 +3,40 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native'
 import { THEME_KEY } from '@/constants/Names'
 import { useOnInit } from '@/hooks/useOnInit'
-
+import { I18nString } from '@/utils/translations'
 type CustomThemeContextType = {
   theme: Theme
-  toggleTheme: () => void
+  setTheme: ( theme : I18nString ) => void
 }
+
 
 const CustomThemeContext = createContext<CustomThemeContextType | undefined>(undefined);
 
 export const CustomThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(DefaultTheme)
+  const [theme, privateSetTheme] = useState<Theme>(DefaultTheme)
 
   // Cargar el tema desde AsyncStorage al inicio
   useOnInit(() => {
     const loadTheme = async () => {
-      try {
-        const savedTheme = await AsyncStorage.getItem(THEME_KEY)
-        if (savedTheme === 'dark') {
-          setTheme(DarkTheme)
-        } else {
-          setTheme(DefaultTheme)
-        }
-      } catch (error) {
-        console.error('Error loading theme from AsyncStorage:', error)
-      }
+      const savedTheme = await AsyncStorage.getItem(THEME_KEY)
+      if(savedTheme)
+        privateSetTheme(getTheme(savedTheme as I18nString))
     }
 
     loadTheme()
   })
 
   // Cambiar y guardar el tema
-  const toggleTheme = async () => {
-    try {
-      const newTheme = theme === DefaultTheme ? DarkTheme : DefaultTheme
-      setTheme(newTheme)
-      await AsyncStorage.setItem(THEME_KEY, newTheme === DarkTheme ? 'dark' : 'light')
-    } catch (error) {
-      console.error('Error saving theme to AsyncStorage:', error)
-    }
+  const setTheme = async ( theme : I18nString ) => {
+    const newTheme = getTheme(theme)
+    privateSetTheme(newTheme)
+    await AsyncStorage.setItem(THEME_KEY, theme)
   }
 
+  const getTheme = (theme : I18nString) => theme == 'light' ? DefaultTheme : DarkTheme
+
   return (
-    <CustomThemeContext.Provider value={{ theme, toggleTheme }}>
+    <CustomThemeContext.Provider value={{ theme, setTheme }}>
       <ThemeProvider value={theme}>
         {children}
       </ThemeProvider>
