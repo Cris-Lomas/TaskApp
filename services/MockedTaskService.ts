@@ -41,7 +41,11 @@ class MockedTaskService{
     getCategories = () : Category[] =>{
         const category1 : Category = new Category(1, "Compras")
         const category2 : Category = new Category(2, "Pendientes para hacer")
-        return [category1, category2]
+        const category3 : Category = new Category(3, "Pendientes para hacer2")
+        const category4 : Category = new Category(4, "Pendientes para hacer3")
+        const category5 : Category = new Category(5, "Pendientes para hacer4")
+        const category6 : Category = new Category(6, "Pendientes para hacer5")
+        return [category1, category2, category3, category4, category5, category6]
     }
 
     createCategory = (taskCategory : Category) : void => {

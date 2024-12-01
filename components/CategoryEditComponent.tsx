@@ -10,11 +10,8 @@ type Props = {
 }
 
 export default function CategoryEditComponent({ category }: Props) {
-  const router = useRouter()
 
   const goToCategory = () => {
-    // Ruta dinámica con parámetros
-    router.navigate(`/tasksInCategory?categoryId=${category.id}`)
   }
 
   return (

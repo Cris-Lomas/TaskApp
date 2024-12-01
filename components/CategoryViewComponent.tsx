@@ -19,7 +19,7 @@ export default function CategoryViewComponent({ category }: Props) {
 
   return (
     <>
-    <ThemedView style={styles.header} onPointerDown={goToCategory}>
+    <ThemedView style={styles.container} onPointerDown={goToCategory}>
       <ThemedText type="title">
         {category.name}
       </ThemedText>
@@ -30,10 +30,17 @@ export default function CategoryViewComponent({ category }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: MIN_PADDING * 4,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginVertical: 10,
+    cursor: 'pointer'
   },
   header: {
-    height: HEADER_HEIGHT * 2,
+    
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: MIN_PADDING

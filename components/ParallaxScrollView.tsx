@@ -27,6 +27,8 @@ export default function ParallaxScrollView({ children, title }: Props) {
           ref={scrollRef}
           scrollEventThrottle={16}
           scrollIndicatorInsets={{ bottom }}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: bottom }}>
           <ThemedView style={styles.content}>{children}</ThemedView>
         </Animated.ScrollView>
@@ -48,6 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 32,
     gap: 16,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
 })
