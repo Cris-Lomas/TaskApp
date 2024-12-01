@@ -19,6 +19,8 @@ type I18nStrings = {
     light: string
     en: string
     es: string
+    cancel : string
+    accept : string
 }
 
 export type Translations = {
@@ -45,7 +47,9 @@ const translations : Translations = {
       dark: "Dark",
       light: "Light",
       en: "English",
-      es: "Spanish"
+      es: "Spanish",
+      cancel: "Cancel",
+      accept: "Accept"
     },
     es: {
       tasks: "Tareas",
@@ -65,7 +69,9 @@ const translations : Translations = {
       dark: "Oscuro",
       light: "Claro",
       en: "Inglés",
-      es: "Español"
+      es: "Español",
+      cancel: "Cancelar",
+      accept: "Aceptar"
     },
   }
   
