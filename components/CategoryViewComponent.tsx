@@ -38,17 +38,5 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     marginVertical: 10,
     cursor: 'pointer'
-  },
-  header: {
-    
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: MIN_PADDING
-  },
-  content: {
-    flex: 1,
-    padding: 32,
-    gap: 16,
-    overflow: 'hidden',
-  },
+  }
 })
