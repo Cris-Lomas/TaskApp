@@ -22,6 +22,8 @@ type I18nStrings = {
     cancel : string
     accept : string
     confirmDeleteCategory : string
+    category : string
+    deletedSuccessfully : string
 }
 
 export type Translations = {
@@ -51,7 +53,9 @@ const translations : Translations = {
       es: "Spanish",
       cancel: "Cancel",
       accept: "Accept",
-      confirmDeleteCategory: "Are you sure you want to delete this category?"
+      confirmDeleteCategory: "Are you sure you want to delete this category?",
+      category: "Category",
+      deletedSuccessfully: "deleted successfully."
     },
     es: {
       tasks: "Tareas",
@@ -74,7 +78,9 @@ const translations : Translations = {
       es: "Español",
       cancel: "Cancelar",
       accept: "Aceptar",
-      confirmDeleteCategory: "¿Confirma que desea eliminar esta categoría?"
+      confirmDeleteCategory: "¿Confirma que desea eliminar esta categoría?",
+      category: "Categoría",
+      deletedSuccessfully: "eliminada exitosamente."
     },
   }
   
