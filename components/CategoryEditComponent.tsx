@@ -1,22 +1,37 @@
 import { StyleSheet } from 'react-native'
 import { ThemedView } from '@/components/ThemedView'
-import { HEADER_HEIGHT, MIN_PADDING } from '@/constants/Sizes'
 import { ThemedText } from './ThemedText'
 import { Category } from '@/domain/Category'
-import { useRouter } from 'expo-router'
+import CustomModal from './Modal'
+import { MIN_PADDING } from '@/constants/Sizes'
+import { useState } from 'react'
 
 type Props = {
   category : Category
+  editCategory : (newCategory : Category) => void
+  deleteCategory : (categoryId : number) => void
 }
 
-export default function CategoryEditComponent({ category }: Props) {
+export default function CategoryEditComponent({ category, editCategory, deleteCategory }: Props) {
 
-  const goToCategory = () => {
+  const [isDeleteModalVisible, setDeleteModalVisible] = useState<boolean>(false)
+
+  const showDeleteModal = () => {
+    setDeleteModalVisible(true)
+  }
+
+  const handleDelete = () =>{
+    deleteCategory(category.id)
+  }
+
+  const handleEdit = () => {
+    editCategory(category)
   }
 
   return (
     <>
-    <ThemedView style={styles.header} onPointerDown={goToCategory}>
+    <CustomModal isVisible={isDeleteModalVisible} msg={'confirmDeleteCategory'} setIsVisible={showDeleteModal} onConfirm={handleDelete}/>
+    <ThemedView style={styles.container} onPointerDown={showDeleteModal}>
       <ThemedText type="title">
         {category.name}
       </ThemedText>
@@ -27,18 +42,14 @@ export default function CategoryEditComponent({ category }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  header: {
-    height: HEADER_HEIGHT * 2,
-    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: MIN_PADDING
-  },
-  content: {
-    flex: 1,
-    padding: 32,
-    gap: 16,
-    overflow: 'hidden',
-  },
+    justifyContent: 'space-between',
+    padding: MIN_PADDING * 4,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    marginVertical: 10,
+    cursor: 'pointer',
+  }
 })
