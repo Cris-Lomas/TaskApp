@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import 'react-native-reanimated'
 import { I18nProvider } from '@/context/i18nContext'
 import { CustomThemeProvider } from '@/context/themeContext'
+import Toast from 'react-native-toast-message'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -29,6 +30,7 @@ export default function RootLayout() {
   return (
     <CustomThemeProvider>
       <I18nProvider>
+        <Toast/>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
           <Stack.Screen name="+not-found" options={{ headerShown: false }}/>
