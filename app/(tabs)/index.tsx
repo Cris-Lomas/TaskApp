@@ -36,9 +36,6 @@ export default function TasksScreen() {
 
   return (
     <ParallaxScrollView title={t('tasks')}>
-      <ThemedView>
-        <ThemedText>{t("menu")}</ThemedText>
-      </ThemedView>
       {
         hasToCreateEmptyCategory &&
         <CategoryViewComponent key={0} category={emptyTaskCategory} />
