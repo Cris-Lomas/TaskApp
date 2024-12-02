@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useOnInit } from '@/hooks/useOnInit'
 import { mockedTaskService } from '@/services/MockedTaskService'
 import CategoryEditComponent from '@/components/CategoryEditComponent'
-import Toast from 'react-native-toast-message'
 
 export default function CategoriesScreen() {
 
@@ -22,19 +21,11 @@ export default function CategoriesScreen() {
 
   useOnInit(() => getData())
 
-  const showSuccess = (msg : string) => {
-    Toast.show({
-        type: "success",
-        text1: msg
-    })
-  }
-
   const deleteCategory = (category : Category) : void =>{
     mockedTaskService.deleteCategory(category.id)
     getData()
     const deleteMsg = `${t('category')}: '${category.name}' ${t('deletedSuccessfully')}`
-    console.log(deleteMsg)
-    showSuccess(deleteMsg)
+    //showSuccess(deleteMsg)
   }
 
   const editCategory = (category : Category) : void =>{

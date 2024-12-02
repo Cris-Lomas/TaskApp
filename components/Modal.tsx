@@ -1,7 +1,9 @@
+import { MIN_PADDING } from '@/constants/Sizes'
 import { useI18n } from '@/context/i18nContext'
 import { I18nString } from '@/utils/translations'
 import React from 'react'
-import { Modal, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
 
 type Props = {
@@ -19,27 +21,33 @@ export default function CustomModal({msg, onConfirm, setIsVisible, isVisible} : 
     }
 
   return (
-    <View style={styles.container}>
-      {/* Ventana Modal */}
-      <Modal
-        visible={isVisible}
-        animationType="fade" // Tipos: 'none', 'slide', 'fade'
-        transparent // Hace el fondo translúcido
-        onRequestClose={closeModal} // Requerido para Android (cerrar con botón de retroceso)
-      >
-        <View style={styles.overlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalText}>{t(msg)}</Text>
-            <TouchableOpacity style={styles.buttonCancel} onPress={closeModal}>
-              <Text style={styles.buttonText}>{t('cancel')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonAccept} onPress={onConfirm}>
-              <Text style={styles.buttonText}>{t('accept')}</Text>
-            </TouchableOpacity>
-          </View>
+    <SafeAreaProvider>
+      <SafeAreaView>
+        <View style={styles.container}>
+          {/* Ventana Modal */}
+          <Modal
+            visible={isVisible}
+            animationType="fade" // Tipos: 'none', 'slide', 'fade'
+            transparent // Hace el fondo translúcido
+            onRequestClose={closeModal} // Requerido para Android (cerrar con botón de retroceso)
+          >
+            <View style={styles.overlay}>
+              <View style={styles.modalContent}>
+                <Text style={styles.modalText}>{t(msg)}</Text>
+                <View style={styles.buttonContent}>
+                  <TouchableOpacity style={styles.buttonCancel} onPress={closeModal}>
+                    <Text style={styles.buttonText}>{t('cancel')}</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.buttonAccept} onPress={onConfirm}>
+                    <Text style={styles.buttonText}>{t('accept')}</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
         </View>
-      </Modal>
-    </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 
@@ -50,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonCancel: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#aaa',
     padding: 10,
     borderRadius: 8
   },
@@ -81,5 +89,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 18,
     fontWeight: 'bold'
-  }
+  },
+  buttonContent: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: MIN_PADDING * 4
+  },
 })

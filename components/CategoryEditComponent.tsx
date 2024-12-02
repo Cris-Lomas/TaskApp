@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { ThemedView } from '@/components/ThemedView'
 import { ThemedText } from './ThemedText'
 import { Category } from '@/domain/Category'
 import CustomModal from './Modal'
 import { MIN_PADDING } from '@/constants/Sizes'
 import { useState } from 'react'
+import { router } from 'expo-router'
 
 type Props = {
   category : Category
@@ -29,10 +30,12 @@ export default function CategoryEditComponent({ category, editCategory, deleteCa
   return (
     <>
     <CustomModal isVisible={isDeleteModalVisible} msg={'confirmDeleteCategory'} setIsVisible={setDeleteModalVisible} onConfirm={handleDelete}/>
-    <ThemedView style={styles.container} onPointerDown={showDeleteModal}>
-      <ThemedText type="title">
-        {category.name}
-      </ThemedText>
+    <ThemedView style={styles.container}>
+      <TouchableOpacity onPress={showDeleteModal}>
+        <ThemedText type="title">
+          {category.name}
+        </ThemedText>
+      </TouchableOpacity>
     </ThemedView>
     </>
   )
