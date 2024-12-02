@@ -9,19 +9,17 @@ import { useState } from 'react'
 type Props = {
   category : Category
   editCategory : (newCategory : Category) => void
-  deleteCategory : (categoryId : number) => void
+  deleteCategory : (category : Category) => void
 }
 
 export default function CategoryEditComponent({ category, editCategory, deleteCategory }: Props) {
 
   const [isDeleteModalVisible, setDeleteModalVisible] = useState<boolean>(false)
 
-  const showDeleteModal = () => {
-    setDeleteModalVisible(true)
-  }
+  const showDeleteModal = () : void => setDeleteModalVisible(true)
 
   const handleDelete = () =>{
-    deleteCategory(category.id)
+    deleteCategory(category)
   }
 
   const handleEdit = () => {
@@ -30,7 +28,7 @@ export default function CategoryEditComponent({ category, editCategory, deleteCa
 
   return (
     <>
-    <CustomModal isVisible={isDeleteModalVisible} msg={'confirmDeleteCategory'} setIsVisible={showDeleteModal} onConfirm={handleDelete}/>
+    <CustomModal isVisible={isDeleteModalVisible} msg={'confirmDeleteCategory'} setIsVisible={setDeleteModalVisible} onConfirm={handleDelete}/>
     <ThemedView style={styles.container} onPointerDown={showDeleteModal}>
       <ThemedText type="title">
         {category.name}
