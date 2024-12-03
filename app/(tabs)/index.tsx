@@ -1,8 +1,5 @@
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import CategoryViewComponent from '@/components/CategoryViewComponent'
 import TaskComponent from '@/components/TaskComponent'
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
 import { NO_CATEGORY_NAME } from '@/constants/Names'
 import { useI18n } from '@/context/i18nContext'
 import { Task } from '@/domain/Task'
@@ -11,6 +8,7 @@ import { CategoryFactory } from '@/factories/CategoryFactory'
 import { useOnInit } from '@/hooks/useOnInit'
 import { mockedTaskService } from '@/services/MockedTaskService'
 import { useState } from 'react'
+import CategoryContainerComponent from '@/components/CategoryContainerComponent'
 
 export default function TasksScreen() {
 
@@ -38,11 +36,11 @@ export default function TasksScreen() {
     <ParallaxScrollView title={t('tasks')}>
       {
         hasToCreateEmptyCategory &&
-        <CategoryViewComponent key={0} category={emptyTaskCategory} />
+        <CategoryContainerComponent key={0} category={emptyTaskCategory} />
       }
       {hasCategories 
       ? categories.map((category) => (
-        <CategoryViewComponent key={category.id} category={category} />
+        <CategoryContainerComponent key={category.id} category={category} />
       ))
       : tasks.map((task) => (
         <TaskComponent key={task.id} task={task} />
