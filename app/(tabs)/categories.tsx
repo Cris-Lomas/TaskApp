@@ -4,7 +4,7 @@ import { Category } from '@/domain/Category'
 import { useState } from 'react'
 import { useOnInit } from '@/hooks/useOnInit'
 import { mockedTaskService } from '@/services/MockedTaskService'
-import CategoryEditComponent from '@/components/CategoryEditComponent'
+import CategoryComponent from '@/components/CategoryComponent'
 import { Snackbar } from 'react-native-paper'
 
 export default function CategoriesScreen() {
@@ -43,7 +43,7 @@ export default function CategoriesScreen() {
     <>
       <ParallaxScrollView title={t("categories")}>
         {categories.map((category) => (
-            <CategoryEditComponent key={category.id} category={category} deleteCategory={deleteCategory} editCategory={editCategory}/>
+            <CategoryComponent key={category.id} category={category} deleteCategory={deleteCategory} editCategory={editCategory}/>
         ))}
       </ParallaxScrollView>
       <Snackbar

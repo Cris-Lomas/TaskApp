@@ -5,7 +5,6 @@ import { Category } from '@/domain/Category'
 import CustomModal from './Modal'
 import { MIN_PADDING } from '@/constants/Sizes'
 import { useState } from 'react'
-import { router } from 'expo-router'
 
 type Props = {
   category : Category
@@ -13,7 +12,7 @@ type Props = {
   deleteCategory : (category : Category) => void
 }
 
-export default function CategoryEditComponent({ category, editCategory, deleteCategory }: Props) {
+export default function CategoryViewComponent({ category, editCategory, deleteCategory }: Props) {
 
   const [isDeleteModalVisible, setDeleteModalVisible] = useState<boolean>(false)
 
