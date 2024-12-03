@@ -24,12 +24,8 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useOnInit(()=>{
     const loadLanguage = async () => {
-      try{
-        const savedLanguage = await AsyncStorage.getItem('language')
-        if (savedLanguage) setLanguage(savedLanguage as I18nString)
-      } catch{
-        console.log("It was an error getting language.")
-      }
+      const savedLanguage = await AsyncStorage.getItem('language')
+      if (savedLanguage) setLanguage(savedLanguage as I18nString)
     }
     loadLanguage()
   })
