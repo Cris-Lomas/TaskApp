@@ -1,3 +1,5 @@
+import { MAX_LENGTH_NAMES } from "@/constants/Sizes"
+
 export type I18nString = keyof I18nStrings
 
 type I18nStrings = {
@@ -24,6 +26,10 @@ type I18nStrings = {
     confirmDeleteCategory : string
     category : string
     deletedSuccessfully : string
+    updatedSuccessfully : string
+    maxLengthExceeded : string
+    minLengthNeeded : string
+    unknownError : string
 }
 
 export type Translations = {
@@ -55,7 +61,11 @@ const translations : Translations = {
       accept: "Accept",
       confirmDeleteCategory: "Are you sure you want to delete this category?",
       category: "Category",
-      deletedSuccessfully: "deleted successfully."
+      deletedSuccessfully: "deleted successfully.",
+      maxLengthExceeded: `Please enter a name with less than ${MAX_LENGTH_NAMES} chars.`,
+      unknownError: "There was an error. Please try again.",
+      minLengthNeeded: "You need to enter at least one char to save the name.",
+      updatedSuccessfully: "updated successfully."
     },
     es: {
       tasks: "Tareas",
@@ -80,7 +90,11 @@ const translations : Translations = {
       accept: "Aceptar",
       confirmDeleteCategory: "¿Confirma que desea eliminar esta categoría?",
       category: "Categoría",
-      deletedSuccessfully: "eliminada exitosamente."
+      deletedSuccessfully: "eliminada exitosamente.",
+      maxLengthExceeded: `Por favor, ingrese un nombre menor a ${MAX_LENGTH_NAMES} caracteres.`,
+      unknownError: "Hubo un error. Por favor, intente nuevamente.",
+      minLengthNeeded: "Es necesario que ingreses al menos un caracter para guardar el nombre.",
+      updatedSuccessfully: "actualizada exitosamente."
     },
   }
   
