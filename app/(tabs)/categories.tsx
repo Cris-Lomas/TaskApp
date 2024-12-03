@@ -6,6 +6,8 @@ import { useOnInit } from '@/hooks/useOnInit'
 import { mockedTaskService } from '@/services/MockedTaskService'
 import CategoryComponent from '@/components/CategoryComponent'
 import { Snackbar } from 'react-native-paper'
+import { MaxLengthExceededException } from '@/errors/MaxLengthExceeded'
+import { MinLengthNeededException } from '@/errors/MinLengthNeeded'
 
 export default function CategoriesScreen() {
 
@@ -34,16 +36,38 @@ export default function CategoriesScreen() {
     setSnackbarVisible(true)
   }
 
-  const editCategory = (category : Category) : void =>{
-    mockedTaskService.updateCategory(category)
-    getData()
+  const renameCategory = (category : Category, newName : string) : void =>{
+    try{
+
+      category = category.rename(newName)
+      mockedTaskService.updateCategory(category)
+      const successMsg = `${t('category')} ${newName} ${t('updatedSuccessfully')}`
+      setSnackbarMsg(successMsg)
+      setSnackbarVisible(true)
+    } catch (error) {
+
+      let errorMsg : string = ''
+
+      if (error instanceof MaxLengthExceededException)
+        errorMsg = t('maxLengthExceeded')
+      else if(error instanceof MinLengthNeededException)
+        errorMsg = t('minLengthNeeded')
+      else
+        errorMsg = t('unknownError')
+
+      setSnackbarMsg(errorMsg)
+      setSnackbarVisible(true)
+
+    } finally{
+      getData()
+    }
   }
 
   return (
     <>
       <ParallaxScrollView title={t("categories")}>
         {categories.map((category) => (
-            <CategoryComponent key={category.id} category={category} deleteCategory={deleteCategory} editCategory={editCategory}/>
+            <CategoryComponent key={category.id} category={category} deleteCategory={deleteCategory} renameCategory={renameCategory}/>
         ))}
       </ParallaxScrollView>
       <Snackbar
