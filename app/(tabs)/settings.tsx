@@ -1,10 +1,9 @@
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { useI18n } from '../../context/i18nContext'
-import { DarkTheme, useRoute } from '@react-navigation/native'
+import { DarkTheme } from '@react-navigation/native'
 import SettingComponent from '@/components/SettingComponent'
 import { useCustomTheme } from '@/context/themeContext'
 import { Setting } from '@/domain/Setting'
-import { I18nString } from '@/utils/translations'
 
 export default function SettingsScreen() {
 
@@ -12,6 +11,7 @@ export default function SettingsScreen() {
   const { theme, setTheme } = useCustomTheme()
   const _settings : Setting[] = [
     {
+      id: 1,
       label: 'theme',
       icon: theme == DarkTheme ? 'moon' : 'sunny',
       defaultOption: theme == DarkTheme ? 'dark' : 'light',
@@ -19,6 +19,7 @@ export default function SettingsScreen() {
       onSelect: setTheme
     },
     {
+      id: 2,
       label: 'language',
       icon: 'flag',
       defaultOption: language,
@@ -29,10 +30,8 @@ export default function SettingsScreen() {
 
   return (
     <ParallaxScrollView title={t("settings")}>
-      {_settings.map((setting, index) => (
-        <>
-          <SettingComponent key={index} setting={setting}/>
-        </>
+      {_settings.map((setting) => (
+          <SettingComponent key={setting.id} setting={setting}/>
       ))}
     </ParallaxScrollView>
   );

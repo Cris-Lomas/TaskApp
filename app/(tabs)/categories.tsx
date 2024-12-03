@@ -5,12 +5,15 @@ import { useState } from 'react'
 import { useOnInit } from '@/hooks/useOnInit'
 import { mockedTaskService } from '@/services/MockedTaskService'
 import CategoryEditComponent from '@/components/CategoryEditComponent'
+import { Snackbar } from 'react-native-paper'
 
 export default function CategoriesScreen() {
 
   const { t } = useI18n()
   const [categories, setCategories] = useState<Category[]>([])
   const [hasCategories, setHasCategories] = useState<boolean>(false)
+  const [snackbarVisible, setSnackbarVisible] = useState<boolean>(false)
+  const [snackbarMsg, setSnackbarMsg] = useState<string>('')
 
   const getData = () : void => {
     const _categories = mockedTaskService.getCategories()
@@ -21,11 +24,14 @@ export default function CategoriesScreen() {
 
   useOnInit(() => getData())
 
+  const closeSnackbar = () => setSnackbarVisible(false)
+
   const deleteCategory = (category : Category) : void =>{
     mockedTaskService.deleteCategory(category.id)
     getData()
     const deleteMsg = `${t('category')}: '${category.name}' ${t('deletedSuccessfully')}`
-    //showSuccess(deleteMsg)
+    setSnackbarMsg(deleteMsg)
+    setSnackbarVisible(true)
   }
 
   const editCategory = (category : Category) : void =>{
@@ -34,10 +40,22 @@ export default function CategoriesScreen() {
   }
 
   return (
-    <ParallaxScrollView title={t("categories")}>
-      {categories.map((category) => (
-          <CategoryEditComponent key={category.id} category={category} deleteCategory={deleteCategory} editCategory={editCategory}/>
-      ))}
-    </ParallaxScrollView>
+    <>
+      <ParallaxScrollView title={t("categories")}>
+        {categories.map((category) => (
+            <CategoryEditComponent key={category.id} category={category} deleteCategory={deleteCategory} editCategory={editCategory}/>
+        ))}
+      </ParallaxScrollView>
+      <Snackbar
+        visible={snackbarVisible}
+        duration={5000}
+        onDismiss={closeSnackbar}
+        action={{
+          label: 'X',
+          onPress: closeSnackbar,
+        }}>
+        {snackbarMsg}
+      </Snackbar>
+    </>
   );
 }
