@@ -58,7 +58,7 @@ export default function CategoryComponent({ category, renameCategory, deleteCate
           <TouchableOpacity onPress={confirmEditing}>
             <Icon name="checkmark-circle-outline" size={24} style={[styles.icon, {color: Colors[theme].icon}]} />
           </TouchableOpacity>
-          <TextInput style={styles.input} value={categoryName} onChangeText={setCategoryName} maxLength={MAX_LENGTH_NAMES}/>
+          <TextInput style={[styles.input, {color: Colors[theme].text}]} value={categoryName} onChangeText={setCategoryName} maxLength={MAX_LENGTH_NAMES}/>
           <TouchableOpacity onPress={cancelEditing}>
             <Icon name="close-circle-outline" size={24} style={[styles.icon, {color: Colors[theme].icon}]} />
           </TouchableOpacity>
